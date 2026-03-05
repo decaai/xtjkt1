@@ -27,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* ANIMATED BACKGROUND */
+        /* --- ANIMASI BACKGROUND --- */
         .area {
             background: #ffffff; width: 100%; height: 100vh;
             position: fixed; top: 0; left: 0; z-index: -1;
@@ -48,106 +48,117 @@
             100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 20%; }
         }
 
-        /* NAVIGATION */
+        /* --- NAVIGATION (Sticky & Blur) --- */
         header {
             padding: 20px 10%; display: flex; justify-content: space-between;
             align-items: center; background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px); border-bottom: 1px solid var(--accent-light);
-            position: sticky; top: 0; z-index: 1000;
+            backdrop-filter: blur(15px); border-bottom: 1px solid var(--accent-light);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
         }
-        .logo { font-weight: 800; font-size: 1.2rem; color: var(--accent); cursor: pointer; }
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--accent); text-decoration: none; }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 20px; }
         nav ul li a {
             text-decoration: none; color: var(--text-muted);
-            font-size: 0.85rem; font-weight: 600; transition: 0.3s; cursor: pointer;
+            font-size: 0.85rem; font-weight: 600; transition: 0.3s;
         }
-        nav ul li a.active { color: var(--accent); }
+        nav ul li a:hover { color: var(--accent); }
 
-        /* PAGE CONTROL */
-        .page { display: none; padding: 60px 10%; min-height: 80vh; animation: fadeIn 0.5s ease; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* UNIVERSAL STYLES */
-        .section-title { font-size: 2.5rem; margin-bottom: 20px; text-align: center; }
+        /* --- SECTION & CARD STYLES --- */
+        section { padding: 100px 10% 60px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        .section-title { font-size: 3rem; margin-bottom: 30px; text-align: center; font-weight: 800; letter-spacing: -1px; }
         .section-title span { color: var(--accent); }
+        
         .card {
-            background: rgba(245, 243, 255, 0.7); padding: 30px;
-            border-radius: 24px; border: 1px solid rgba(139, 92, 246, 0.1);
-            backdrop-filter: blur(10px); margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.6); padding: 40px;
+            border-radius: 30px; border: 1px solid rgba(139, 92, 246, 0.15);
+            backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: 0.4s;
         }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
 
-        /* HOME SPECIFIC */
+        /* --- HERO --- */
         .hero-img {
-            width: 100%; max-width: 900px; border-radius: 30px;
+            width: 100%; max-width: 950px; border-radius: 40px;
             display: block; margin: 40px auto;
-            -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
         }
 
-        /* TABLE STYLES (Siswa & Jadwal) */
-        .table-container { overflow-x: auto; margin-top: 20px; }
-        table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 15px; overflow: hidden; }
-        th { background: var(--accent); color: white; padding: 15px; text-align: left; font-size: 0.9rem; }
-        td { padding: 15px; border-bottom: 1px solid var(--accent-light); font-size: 0.9rem; }
-        tr:hover { background: var(--accent-light); }
+        /* --- TABLES (Data & Jadwal) --- */
+        .table-container { overflow-x: auto; margin-top: 20px; border-radius: 20px; }
+        table { width: 100%; border-collapse: collapse; background: var(--white); }
+        th { background: var(--accent); color: white; padding: 18px; text-align: left; font-size: 0.9rem; text-transform: uppercase; }
+        td { padding: 16px; border-bottom: 1px solid var(--accent-light); transition: 0.2s; }
+        tr:hover td { background: var(--accent-light); color: var(--accent); font-weight: 600; }
 
-        /* ARSIP STYLES */
-        .archive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .archive-item { border-radius: 15px; overflow: hidden; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: none; }
-        .archive-item.visible { display: block; }
-        .archive-item img { width: 100%; height: 200px; object-fit: cover; }
+        /* --- ARSIP GALLERY --- */
+        .archive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .archive-item { 
+            border-radius: 25px; overflow: hidden; background: #fff; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); position: relative;
+            display: none; /* See More Logic */
+        }
+        .archive-item.visible { display: block; animation: scaleUp 0.4s ease; }
+        @keyframes scaleUp { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        
+        .archive-item img { width: 100%; height: 250px; object-fit: cover; transition: 0.5s; }
+        .archive-item:hover img { transform: scale(1.1); }
 
         .btn-toggle { 
-            background: var(--accent); color: white; border: none; padding: 12px 35px; 
-            border-radius: 50px; cursor: pointer; font-weight: 600; margin: 30px auto; display: block; 
+            background: var(--accent); color: white; border: none; padding: 15px 45px; 
+            border-radius: 50px; cursor: pointer; font-weight: 700; margin: 40px auto; display: block;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3); transition: 0.3s;
         }
+        .btn-toggle:hover { transform: scale(1.05); background: #7c3aed; }
 
-        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.8rem; }
+        footer { text-align: center; padding: 60px; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid #eee; }
 
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; }
-            nav ul li { margin: 0 10px; }
+            header { padding: 15px 5%; }
+            nav ul li { margin-left: 10px; }
+            .section-title { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="area"><ul class="circles"><li></li><li></li><li></li><li></li><li></li></ul></div>
+    <div class="area"><ul class="circles"><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>
 
     <header>
-        <div class="logo" onclick="showPage('home')">XTJKT1.P</div>
+        <a href="#home" class="logo">XTJKT1.P</a>
         <nav>
             <ul>
-                <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
-                <li><a onclick="showPage('profil')" id="nav-profil">Profil</a></li>
-                <li><a onclick="showPage('siswa')" id="nav-siswa">Siswa</a></li>
-                <li><a onclick="showPage('jadwal')" id="nav-jadwal">Jadwal</a></li>
-                <li><a onclick="showPage('arsip')" id="nav-arsip">Arsip</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#siswa">Siswa</a></li>
+                <li><a href="#jadwal">Jadwal</a></li>
+                <li><a href="#arsip">Arsip</a></li>
             </ul>
         </nav>
     </header>
 
-    <main id="home" class="page active">
-        <h1 class="section-title">Generasi <span>Hebat</span> XTJKT1</h1>
-        <p style="text-align: center;">Teknik Jaringan Komputer & Telekomunikasi - SMKN 1 Pracimantoro.</p>
-        <img src="images/foto-utama.jpg" alt="Foto Kelas" class="hero-img">
-    </main>
+    <section id="home">
+        <h1 class="section-title">Generasi <span>Digital</span> XTJKT1</h1>
+        <p style="text-align: center; color: var(--text-muted);">Innovating Through Network and Connection.</p>
+        <img src="images/foto-utama.jpg" alt="Foto Kelas Utama" class="hero-img">
+    </section>
 
-    <main id="profil" class="page">
-        <h2 class="section-title">Tentang <span>TJKT</span></h2>
-        <div class="card">
-            <h3>Apa itu TJKT?</h3>
-            <p>Teknik Jaringan Komputer dan Telekomunikasi (TJKT) mempelajari infrastruktur digital, mulai dari perakitan perangkat keras, manajemen server, hingga sistem keamanan siber.</p>
+    <section id="profil">
+        <h2 class="section-title">Edukasi <span>& Visi</span></h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <div class="card">
+                <h3>Apa itu TJKT?</h3>
+                <p>Teknik Jaringan Komputer dan Telekomunikasi adalah core teknologi masa depan. Kami mempelajari Fiber Optic, Cisco Networking, Server Management, dan Cybersecurity.</p>
+            </div>
+            <div class="card">
+                <h3>Visi Kelas</h3>
+                <p>Mencetak talenta digital yang disiplin, beretika, dan unggul dalam kompetensi jaringan komputer global.</p>
+            </div>
         </div>
-        <div class="card">
-            <h3>Visi & Misi Kelas</h3>
-            <p><strong>Visi:</strong> Mewujudkan XTJKT1 sebagai kelas yang kompeten, kreatif, dan solid.</p>
-            <p><strong>Misi:</strong> Saling membantu dalam belajar, menjaga kedisiplinan, dan aktif dalam inovasi teknologi.</p>
-        </div>
-    </main>
+    </section>
 
-    <main id="siswa" class="page">
+    <section id="siswa">
         <h2 class="section-title">Data <span>Siswa</span></h2>
         <div class="card">
             <div class="table-container">
@@ -156,22 +167,22 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Lengkap</th>
-                            <th>Jabatan/Keterangan</th>
+                            <th>Jabatan</th>
                         </tr>
                     </thead>
-                    <tbody id="tabelSiswa">
-                        <tr><td>1</td><td>Nama Siswa 1</td><td>Ketua Kelas</td></tr>
-                        <tr><td>2</td><td>Nama Siswa 2</td><td>Sekretaris</td></tr>
-                        <tr><td>3</td><td>Nama Siswa 3</td><td>Siswa</td></tr>
-                        <tr><td>...</td><td>...</td><td>...</td></tr>
-                    </tbody>
+                    <tbody>
+                        <tr><td>01</td><td>Nama Lengkap Siswa</td><td>Ketua Kelas</td></tr>
+                        <tr><td>02</td><td>Nama Lengkap Siswa</td><td>Sekretaris</td></tr>
+                        <tr><td>03</td><td>Nama Lengkap Siswa</td><td>Bendahara</td></tr>
+                        <tr><td>04</td><td>Nama Lengkap Siswa</td><td>Anggota</td></tr>
+                        </tbody>
                 </table>
             </div>
         </div>
-    </main>
+    </section>
 
-    <main id="jadwal" class="page">
-        <h2 class="section-title">Jadwal <span>Pelajaran</span></h2>
+    <section id="jadwal">
+        <h2 class="section-title">Jadwal <span>Harian</span></h2>
         <div class="card">
             <div class="table-container">
                 <table>
@@ -186,70 +197,54 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Senin</td>
-                            <td>Dasar TJKT</td>
-                            <td>Informatika</td>
-                            <td>B. Indonesia</td>
-                            <td>Matematika</td>
-                            <td>Olahraga</td>
-                        </tr>
-                        <tr>
-                            <td>Selasa</td>
-                            <td>Mapel A</td>
-                            <td>Mapel B</td>
-                            <td>Mapel C</td>
-                            <td>Mapel D</td>
-                            <td>Mapel E</td>
-                        </tr>
-                        </tbody>
+                        <tr><td>Senin</td><td>Dasar TJKT</td><td>Informatika</td><td>Matematika</td><td>B. Indo</td><td>Olahraga</td></tr>
+                        <tr><td>Selasa</td><td>Mapel 1</td><td>Mapel 2</td><td>Mapel 3</td><td>Mapel 4</td><td>Mapel 5</td></tr>
+                        <tr><td>Rabu</td><td>Mapel 1</td><td>Mapel 2</td><td>Mapel 3</td><td>Mapel 4</td><td>Mapel 5</td></tr>
+                        <tr><td>Kamis</td><td>Mapel 1</td><td>Mapel 2</td><td>Mapel 3</td><td>Mapel 4</td><td>Mapel 5</td></tr>
+                        <tr><td>Jumat</td><td>Mapel 1</td><td>Mapel 2</td><td>Mapel 3</td><td>Mapel 4</td><td>Mapel 5</td></tr>
+                    </tbody>
                 </table>
             </div>
         </div>
-    </main>
+    </section>
 
-    <main id="arsip" class="page">
-        <h2 class="section-title">Arsip <span>Dokumentasi</span></h2>
+    <section id="arsip">
+        <h2 class="section-title">Arsip <span>Memori</span></h2>
         <div class="archive-grid" id="gallery">
-            <div class="archive-item visible"><img src="images/arsip1.jpg"><p style="padding:10px">Dokumentasi 1</p></div>
-            <div class="archive-item visible"><img src="images/arsip2.jpg"><p style="padding:10px">Dokumentasi 2</p></div>
-            <div class="archive-item visible"><img src="images/arsip3.jpg"><p style="padding:10px">Dokumentasi 3</p></div>
-            <div class="archive-item"><img src="images/arsip4.jpg"><p style="padding:10px">Dokumentasi 4</p></div>
-            <div class="archive-item"><img src="images/arsip5.jpg"><p style="padding:10px">Dokumentasi 5</p></div>
-            <div class="archive-item"><img src="images/arsip6.jpg"><p style="padding:10px">Dokumentasi 6</p></div>
-            <div class="archive-item"><img src="images/arsip7.jpg"><p style="padding:10px">Dokumentasi 7</p></div>
-            <div class="archive-item"><img src="images/arsip8.jpg"><p style="padding:10px">Dokumentasi 8</p></div>
-            <div class="archive-item"><img src="images/arsip9.jpg"><p style="padding:10px">Dokumentasi 9</p></div>
-            <div class="archive-item"><img src="images/arsip10.jpg"><p style="padding:10px">Dokumentasi 10</p></div>
-            <div class="archive-item"><img src="images/arsip11.jpg"><p style="padding:10px">Dokumentasi 11</p></div>
-            <div class="archive-item"><img src="images/arsip12.jpg"><p style="padding:10px">Dokumentasi 12</p></div>
-            <div class="archive-item"><img src="images/arsip13.jpg"><p style="padding:10px">Dokumentasi 13</p></div>
+            <div class="archive-item visible"><img src="images/arsip1.jpg"><div style="padding:15px"><b>Praktik Jaringan</b></div></div>
+            <div class="archive-item visible"><img src="images/arsip2.jpg"><div style="padding:15px"><b>Kebersamaan</b></div></div>
+            <div class="archive-item visible"><img src="images/arsip3.jpg"><div style="padding:15px"><b>Classmeeting</b></div></div>
+            <div class="archive-item"><img src="images/arsip4.jpg"><div style="padding:15px"><b>Foto 4</b></div></div>
+            <div class="archive-item"><img src="images/arsip5.jpg"><div style="padding:15px"><b>Foto 5</b></div></div>
+            <div class="archive-item"><img src="images/arsip6.jpg"><div style="padding:15px"><b>Foto 6</b></div></div>
+            <div class="archive-item"><img src="images/arsip7.jpg"><div style="padding:15px"><b>Foto 7</b></div></div>
+            <div class="archive-item"><img src="images/arsip8.jpg"><div style="padding:15px"><b>Foto 8</b></div></div>
+            <div class="archive-item"><img src="images/arsip9.jpg"><div style="padding:15px"><b>Foto 9</b></div></div>
+            <div class="archive-item"><img src="images/arsip10.jpg"><div style="padding:15px"><b>Foto 10</b></div></div>
+            <div class="archive-item"><img src="images/arsip11.jpg"><div style="padding:15px"><b>Foto 11</b></div></div>
+            <div class="archive-item"><img src="images/arsip12.jpg"><div style="padding:15px"><b>Foto 12</b></div></div>
+            <div class="archive-item"><img src="images/arsip13.jpg"><div style="padding:15px"><b>Foto 13</b></div></div>
         </div>
-        <button class="btn-toggle" id="btnSee" onclick="toggleArsip()">See More</button>
-    </main>
+        <button class="btn-toggle" id="btnSee" onclick="toggleArsip()">See More Memories</button>
+    </section>
 
-    <footer>&copy; 2026 XTJKT1 SMKN 1 PRACIMANTORO</footer>
+    <footer>
+        <p>Created with Passion for XTJKT1 &copy; 2026</p>
+        <p style="font-size: 0.7rem; margin-top: 10px; opacity: 0.5;">SMK NEGERI 1 PRACIMANTORO</p>
+    </footer>
 
     <script>
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.querySelectorAll('nav ul li a').forEach(nav => nav.classList.remove('active'));
-            
-            document.getElementById(pageId).classList.add('active');
-            document.getElementById('nav-' + pageId).classList.add('active');
-            window.scrollTo(0, 0);
-        }
-
         function toggleArsip() {
             const items = document.querySelectorAll('.archive-item:not(:nth-child(-n+3))');
             const btn = document.getElementById('btnSee');
-            if (btn.innerText === 'See More') {
+            
+            if (btn.innerText === 'See More Memories') {
                 items.forEach(item => item.classList.add('visible'));
-                btn.innerText = 'Hide';
+                btn.innerText = 'Hide Memories';
             } else {
                 items.forEach(item => item.classList.remove('visible'));
-                btn.innerText = 'See More';
-                showPage('arsip');
+                btn.innerText = 'See More Memories';
+                document.getElementById('arsip').scrollIntoView();
             }
         }
     </script>
