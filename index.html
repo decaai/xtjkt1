@@ -3,44 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XTJKT1 - SMKN 1 Pracimantoro</title>
+    <title>XTJKT1 - SMKN 1 PRACIMANTORO</title>
     <style>
-        /* CSS INTERNAL */
+        /* CSS RESET & BASE */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: #f0f2f5;
-            color: #1c1e21;
-            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #2d3436;
         }
 
-        /* Navigasi */
+        /* NAVIGATION */
         header {
             background: #2c3e50;
-            color: white;
-            padding: 15px 5%;
+            padding: 15px 8%;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .logo {
-            font-size: 1.5rem;
+            color: #fff;
+            font-size: 1.4rem;
             font-weight: bold;
-            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         nav ul {
@@ -53,8 +50,9 @@
         }
 
         nav ul li a {
-            color: white;
+            color: #ecf0f1;
             text-decoration: none;
+            font-size: 1rem;
             transition: 0.3s;
         }
 
@@ -62,145 +60,211 @@
             color: #3498db;
         }
 
-        /* Hero / Homepage */
-        .hero {
-            height: 100vh;
+        /* SECTION STYLING */
+        section {
+            padding: 100px 8% 60px;
+            min-height: 100vh;
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        /* 1. HOME SECTION */
+        #home {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: white;
-            padding: 20px;
+            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('images/bg-pattern.png');
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        .main-photo {
-            width: 90%;
-            max-width: 900px;
+        .hero-img {
+            width: 100%;
+            max-width: 850px;
             height: 450px;
             object-fit: cover;
-            margin-top: 25px;
             border-radius: 20px;
-            border: 8px solid #ecf0f1;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            margin-top: 20px;
         }
 
-        /* Arsip Foto */
-        .arsip {
-            padding: 100px 5% 50px;
-            max-width: 1200px;
-            margin: 0 auto;
+        /* 2. PROFIL SECTION */
+        #profil {
+            background: #fff;
         }
 
-        .arsip h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2rem;
-            position: relative;
-        }
-
-        .arsip h2::after {
-            content: '';
-            width: 60px;
-            height: 4px;
-            background: #3498db;
-            display: block;
-            margin: 10px auto;
-        }
-
-        .photo-grid {
+        .profil-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .info-box {
+            background: #f1f2f6;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+        }
+
+        /* 3. ARSIP FOTO SECTION (GALLERY) */
+        #arsip {
+            background: #f8f9fa;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
 
-        .card {
-            background: white;
-            border-radius: 12px;
+        .gallery-item {
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
+            border-radius: 12px;
+            height: 250px;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card img {
+        .gallery-item img {
             width: 100%;
-            height: 220px;
+            height: 100%;
             object-fit: cover;
+            transition: 0.5s;
         }
 
-        .card-info {
-            padding: 15px;
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            width: 100%;
+            padding: 10px;
             text-align: center;
-            font-weight: 600;
         }
 
-        footer {
+        /* 4. KONTAK SECTION */
+        #kontak {
             background: #2c3e50;
             color: white;
             text-align: center;
-            padding: 30px;
-            margin-top: 50px;
+            min-height: auto;
+            padding: 80px 8%;
         }
 
-        /* Responsive */
+        .social-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border: 1px solid white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: white;
+            color: #2c3e50;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1a252f;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 1.8rem; }
-            .main-photo { height: 250px; }
+            nav ul { display: none; } /* Sederhananya disembunyikan di mobile */
+            .profil-container { grid-template-columns: 1fr; }
+            .hero-img { height: 250px; }
         }
     </style>
 </head>
 <body>
 
     <header>
+        <div class="logo">XTJKT1 SMKN1 PRACI</div>
         <nav>
-            <div class="logo">XTJKT1 PRACI</div>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#arsip">Arsip</a></li>
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#arsip">Arsip Foto</a></li>
+                <li><a href="#kontak">Kontak</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="home" class="hero">
+    <section id="home">
         <h1>Welcome to XTJKT1</h1>
-        <p>SMK Negeri 1 Pracimantoro - Membangun Masa Depan Digital</p>
-        
-        <img src="images/foto_bersama.jpg" alt="Foto Kelas Utama" class="main-photo">
+        <p>Kelas Teknik Jaringan Komputer & Telekomunikasi Angkatan 2026</p>
+        <img src="images/foto-utama.jpg" alt="Foto Bersama Kelas" class="hero-img">
     </section>
 
-    <section id="arsip" class="arsip">
-        <h2>Arsip Dokumentasi</h2>
-        
-        <div class="photo-grid">
-            <div class="card">
-                <img src="images/kegiatan1.jpg" alt="Kegiatan">
-                <div class="card-info">Praktik Jaringan</div>
+    <section id="profil">
+        <h2 class="section-title">Profil Kelas</h2>
+        <div class="profil-container">
+            <div class="info-box">
+                <h3>Visi & Misi</h3>
+                <p>Menjadi kelas yang solid, kreatif dalam teknologi, dan unggul dalam bidang jaringan komputer di SMKN 1 Pracimantoro.</p>
             </div>
-
-            <div class="card">
-                <img src="images/kegiatan2.jpg" alt="Kegiatan">
-                <div class="card-info">Momen di Kelas</div>
-            </div>
-
-            <div class="card">
-                <img src="images/kegiatan3.jpg" alt="Kegiatan">
-                <div class="card-info">Tugas Kelompok</div>
+            <div class="info-box">
+                <h3>Struktur Organisasi</h3>
+                <ul>
+                    <li><strong>Wali Kelas:</strong> Bapak/Ibu Guru</li>
+                    <li><strong>Ketua Kelas:</strong> Nama Siswa</li>
+                    <li><strong>Sekretaris:</strong> Nama Siswa</li>
+                    <li><strong>Bendahara:</strong> Nama Siswa</li>
+                </ul>
             </div>
         </div>
     </section>
 
+    <section id="arsip">
+        <h2 class="section-title">Arsip Foto Kegiatan</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/foto1.jpg" alt="Kegiatan 1">
+                <div class="caption">Praktik Mikrotik</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto2.jpg" alt="Kegiatan 2">
+                <div class="caption">Momen Istirahat</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto3.jpg" alt="Kegiatan 3">
+                <div class="caption">Kerja Bakti</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/foto4.jpg" alt="Kegiatan 4">
+                <div class="caption">Ulang Tahun Kelas</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontak">
+        <h2 class="section-title" style="color: white;">Hubungi Kami</h2>
+        <p style="margin-bottom: 30px;">Ikuti keseharian kami di media sosial atau mampir ke lab TJKT.</p>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+            <a href="#">WhatsApp</a>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2026 Keluarga Besar XTJKT1 - SMKN 1 Pracimantoro</p>
+        <p>&copy; 2026 XTJKT1 SMKN 1 Pracimantoro. All Rights Reserved.</p>
     </footer>
 
 </body>
