@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X TJKT 1 | SMKN 1 PRACIMANTORO</title>
+    <title>XTJKT1 | SMKN 1 PRACIMANTORO</title>
     <style>
         :root {
             --bg: #ffffff;
@@ -11,14 +11,12 @@
             --text-muted: #64748b;
             --accent: #8b5cf6; 
             --accent-light: #f5f3ff;
+            --white: #ffffff;
         }
 
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            margin: 0; padding: 0; box-sizing: border-box;
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
         }
 
         body {
@@ -26,230 +24,216 @@
             color: var(--text-main);
             line-height: 1.7;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* --- ANIMASI BACKGROUND SEDERHANA --- */
+        /* ANIMATED BACKGROUND */
         .area {
-            background: #ffffff;  
-            width: 100%;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
+            background: #ffffff; width: 100%; height: 100vh;
+            position: fixed; top: 0; left: 0; z-index: -1;
         }
-
         .circles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden;
         }
-
         .circles li {
-            position: absolute;
-            display: block;
-            list-style: none;
-            width: 20px;
-            height: 20px;
-            background: rgba(139, 92, 246, 0.1);
-            animation: animate 25s linear infinite;
-            bottom: -150px;
-            border-radius: 50%;
+            position: absolute; display: block; list-style: none;
+            width: 20px; height: 20px; background: rgba(139, 92, 246, 0.1);
+            animation: animate 25s linear infinite; bottom: -150px; border-radius: 50%;
         }
-
         .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
         .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
         .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
-        .circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
-        .circles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
-        .circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
-
         @keyframes animate {
             0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 50%; }
             100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 20%; }
         }
 
-        /* --- NAVIGATION --- */
+        /* NAVIGATION */
         header {
-            padding: 20px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--accent-light);
+            padding: 20px 10%; display: flex; justify-content: space-between;
+            align-items: center; background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px); border-bottom: 1px solid var(--accent-light);
+            position: sticky; top: 0; z-index: 1000;
         }
-
-        .logo { font-weight: 800; font-size: 1.2rem; color: var(--accent); }
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--accent); cursor: pointer; }
         nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 30px; }
-        nav ul li a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
-        nav ul li a:hover { color: var(--accent); }
+        nav ul li { margin-left: 20px; }
+        nav ul li a {
+            text-decoration: none; color: var(--text-muted);
+            font-size: 0.85rem; font-weight: 600; transition: 0.3s; cursor: pointer;
+        }
+        nav ul li a.active { color: var(--accent); }
 
-        /* --- HERO --- */
-        .hero { padding: 60px 10% 0; text-align: center; }
-        .hero span { background: var(--accent-light); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.75rem; letter-spacing: 1px; }
-        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin: 20px 0; }
-        
-        .hero-img-wrapper { position: relative; width: 100%; max-width: 1000px; margin: 40px auto 0; }
-        .hero-img {
-            width: 100%;
-            height: auto;
-            border-radius: 30px 30px 0 0;
-            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        /* PAGE CONTROL */
+        .page { display: none; padding: 60px 10%; min-height: 80vh; animation: fadeIn 0.5s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* UNIVERSAL STYLES */
+        .section-title { font-size: 2.5rem; margin-bottom: 20px; text-align: center; }
+        .section-title span { color: var(--accent); }
+        .card {
+            background: rgba(245, 243, 255, 0.7); padding: 30px;
+            border-radius: 24px; border: 1px solid rgba(139, 92, 246, 0.1);
+            backdrop-filter: blur(10px); margin-bottom: 20px;
         }
 
-        /* --- CONTENT SECTION --- */
-        .section { padding: 80px 10%; }
-        .section-title { font-size: 2rem; margin-bottom: 40px; }
-        .section-title span { color: var(--accent); }
-        
-        .grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .card { background: rgba(245, 243, 255, 0.7); padding: 30px; border-radius: 20px; border: 1px solid rgba(139, 92, 246, 0.1); backdrop-filter: blur(5px); }
+        /* HOME SPECIFIC */
+        .hero-img {
+            width: 100%; max-width: 900px; border-radius: 30px;
+            display: block; margin: 40px auto;
+            -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+        }
 
-        /* --- ARSIP GALLERY --- */
+        /* TABLE STYLES (Siswa & Jadwal) */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--white); border-radius: 15px; overflow: hidden; }
+        th { background: var(--accent); color: white; padding: 15px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid var(--accent-light); }
+        tr:hover { background: var(--accent-light); }
+
+        /* ARSIP STYLES */
         .archive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .archive-item { border-radius: 15px; overflow: hidden; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: none; }
-        .archive-item.show { display: block; }
+        .archive-item.visible { display: block; }
         .archive-item img { width: 100%; height: 200px; object-fit: cover; }
-        .p-4 { padding: 15px; }
 
-        .btn-container { text-align: center; margin-top: 40px; }
-        .btn-toggle { background: var(--accent); color: white; border: none; padding: 12px 40px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .btn-toggle:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4); }
+        .btn-toggle { 
+            background: var(--accent); color: white; border: none; padding: 12px 35px; 
+            border-radius: 50px; cursor: pointer; font-weight: 600; margin: 30px auto; display: block; 
+        }
 
-        /* --- SOSMED --- */
-        .social-links a { display: inline-block; margin: 10px; color: var(--text-main); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--accent); padding-bottom: 5px; }
+        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.8rem; }
 
-        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid #eee; margin-top: 50px; }
-
-        @media (max-width: 768px) { .grid-info { grid-template-columns: 1fr; } nav { display: none; } }
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; }
+            nav ul li { margin: 0 10px; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="area">
-        <ul class="circles">
-            <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-        </ul>
-    </div>
+    <div class="area"><ul class="circles"><li></li><li></li><li></li><li></li><li></li></ul></div>
 
     <header>
-        <div class="logo">X TJKT 1 SKANSAPRASTA</div>
+        <div class="logo" onclick="showPage('home')">XTJKT1.P</div>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#profil">Profil</a></li>
-                <li><a href="#arsip">Arsip</a></li>
-                <li><a href="#sosmed">Social</a></li>
+                <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+                <li><a onclick="showPage('profil')" id="nav-profil">Profil</a></li>
+                <li><a onclick="showPage('siswa')" id="nav-siswa">Siswa</a></li>
+                <li><a onclick="showPage('jadwal')" id="nav-jadwal">Jadwal</a></li>
+                <li><a onclick="showPage('arsip')" id="nav-arsip">Arsip</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <span>X TJKT 1 OFFICIAL WEBSITE</span>
-        <h1>Innovating The Future <br>Together.</h1>
-        <div class="hero-img-wrapper">
-            <img src="images/foto-utama.jpg" alt="Foto Kelas" class="hero-img">
-        </div>
-    </section>
+    <main id="home" class="page active">
+        <h1 class="section-title">Generasi <span>Hebat</span> XTJKT1</h1>
+        <p style="text-align: center;">Selamat datang di website resmi kelas XTJKT1 SMK Negeri 1 Pracimantoro.</p>
+        <img src="images/foto-utama.jpg" alt="Foto Kelas" class="hero-img">
+    </main>
 
-    <section id="profil" class="section">
-        <h2 class="section-title">Visi & <span>Misi Kelas</span></h2>
-        <div class="grid-info">
-            <div class="card">
-                <h3>Visi Kami</h3>
-                <p>Menjadi kelas yang paling solid, berprestasi di bidang teknologi informasi, dan menjunjung tinggi nama baik SMKN 1 Pracimantoro.</p>
-            </div>
-            <div class="card">
-                <h3>Misi Utama</h3>
-                <p>• Menguasai teknik jaringan dengan serius.<br>
-                   • Saling membantu dalam kesulitan belajar.<br>
-                   • Menjaga solidaritas antar teman seangkatan.<br>
-                   • Aktif berkontribusi dalam kegiatan sekolah.<br>
-                   • Mengembangkan bakat di bidang IT dan digital.</p>
-            </div>
+    <main id="profil" class="page">
+        <h2 class="section-title">Tentang <span>TJKT</span></h2>
+        <div class="card">
+            <h3>Apa itu TJKT?</h3>
+            <p>Teknik Jaringan Komputer dan Telekomunikasi adalah jurusan yang fokus pada infrastruktur IT, mulai dari perakitan komputer hingga manajemen server dan keamanan jaringan.</p>
         </div>
-    </section>
-    
-    <section id="profil" class="section">
-        <h2 class="section-title">Mengenal <span>TJKT & Visi Kami</span></h2>
-        <div class="grid-info">
-            <div class="card">
-                <h3>Apa itu TJKT?</h3>
-                <p><strong>Teknik Jaringan Komputer dan Telekomunikasi (TJKT)</strong> adalah kompetensi keahlian yang mempelajari cara merakit komputer, instalasi sistem operasi, hingga membangun infrastruktur jaringan kabel maupun nirkabel.</p>
-                <h4>Dasar-Dasar Keahlian:</h4>
-                <ul>
-                    <li><strong>Hardware:</strong> Pengenalan komponen fisik PC dan perangkat jaringan (Router, Switch, Access Point).</li>
-                    <li><strong>Networking:</strong> Pemahaman IP Address, Subnetting, dan Protokol Jaringan.</li>
-                    <li><strong>Telekomunikasi:</strong> Teknik transmisi data melalui kabel (Fiber Optic) maupun nirkabel.</li>
-                    <li><strong>Cyber Security:</strong> Dasar keamanan jaringan untuk melindungi data digital.</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h3>Visi & Misi Kelas</h3>
-                <p><strong>Visi:</strong> Mewujudkan XTJKT1 sebagai kelas yang kompeten di bidang teknologi, memiliki solidaritas tinggi, dan berakhlak mulia.</p>
-                <h4>Misi Kami:</h4>
-                <ul>
-                    <li>Menguasai teori dan praktik jaringan secara konsisten.</li>
-                    <li>Membangun lingkungan kelas yang suportif dan anti-bullying.</li>
-                    <li>Menjaga fasilitas Lab TJKT dengan penuh tanggung jawab.</li>
-                    <li>Disiplin waktu dan tertib dalam mengikuti standar industri.</li>
-                </ul>
-            </div>
+        <div class="card">
+            <h3>Visi & Misi</h3>
+            <p>Menjadi kelas yang paling solid, menguasai teknologi masa depan, dan selalu disiplin dalam praktik maupun teori.</p>
         </div>
-    </section>
+    </main>
 
-    <section id="arsip" class="section">
+    <main id="siswa" class="page">
+        <h2 class="section-title">Data <span>Siswa</span></h2>
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Lengkap</th>
+                        <th>Jabatan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>Nama Contoh 1</td><td>Ketua Kelas</td></tr>
+                    <tr><td>2</td><td>Nama Contoh 2</td><td>Sekretaris</td></tr>
+                    <tr><td>3</td><td>...</td><td>...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <main id="jadwal" class="page">
+        <h2 class="section-title">Jadwal <span>Pelajaran</span></h2>
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hari</th>
+                        <th>Mata Pelajaran</th>
+                        <th>Jam</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Senin</td><td>Dasar TJKT</td><td>07:00 - 12:00</td></tr>
+                    <tr><td>Selasa</td><td>Informatika</td><td>08:00 - 10:00</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <main id="arsip" class="page">
         <h2 class="section-title">Arsip <span>Dokumentasi</span></h2>
-        <div class="archive-grid" id="photoGallery">
-            <div class="archive-item show"><img src="images/arsip1.jpg"><div class="p-4"><h4>ARSIP 1</h4></div></div>
-            <div class="archive-item show"><img src="images/arsip2.jpg"><div class="p-4"><h4>ARSIP 2</h4></div></div>
-            <div class="archive-item show"><img src="images/arsip3.jpg"><div class="p-4"><h4>ARSIP 3</h4></div></div>
-            <div class="archive-item"><img src="images/arsip4.jpg"><div class="p-4"><h4>ARSIP 4</h4></div></div>
-            <div class="archive-item"><img src="images/arsip5.jpg"><div class="p-4"><h4>ARSIP 5</h4></div></div>
-            <div class="archive-item"><img src="images/arsip6.jpg"><div class="p-4"><h4>ARSIP 6</h4></div></div>
-            <div class="archive-item"><img src="images/arsip7.jpg"><div class="p-4"><h4>ARSIP 7</h4></div></div>
-            <div class="archive-item"><img src="images/arsip8.jpg"><div class="p-4"><h4>ARSIP 8</h4></div></div>
-            <div class="archive-item"><img src="images/arsip9.jpg"><div class="p-4"><h4>ARSIP 9</h4></div></div>
-            <div class="archive-item"><img src="images/arsip10.jpg"><div class="p-4"><h4>ARSIP 10</h4></div></div>
+        <div class="archive-grid" id="gallery">
+            <div class="archive-item visible"><img src="images/arsip1.jpg"><p style="padding:10px">Kegiatan 1</p></div>
+            <div class="archive-item visible"><img src="images/arsip2.jpg"><p style="padding:10px">Kegiatan 2</p></div>
+            <div class="archive-item visible"><img src="images/arsip3.jpg"><p style="padding:10px">Kegiatan 3</p></div>
+            <div class="archive-item"><img src="images/arsip4.jpg"><p style="padding:10px">Kegiatan 4</p></div>
+            <div class="archive-item"><img src="images/arsip5.jpg"><p style="padding:10px">Kegiatan 5</p></div>
+            <div class="archive-item"><img src="images/arsip6.jpg"><p style="padding:10px">Kegiatan 6</p></div>
+            <div class="archive-item"><img src="images/arsip7.jpg"><p style="padding:10px">Kegiatan 7</p></div>
+            <div class="archive-item"><img src="images/arsip8.jpg"><p style="padding:10px">Kegiatan 8</p></div>
+            <div class="archive-item"><img src="images/arsip9.jpg"><p style="padding:10px">Kegiatan 9</p></div>
+            <div class="archive-item"><img src="images/arsip10.jpg"><p style="padding:10px">Kegiatan 10</p></div>
+            <div class="archive-item"><img src="images/arsip11.jpg"><p style="padding:10px">Kegiatan 11</p></div>
+            <div class="archive-item"><img src="images/arsip12.jpg"><p style="padding:10px">Kegiatan 12</p></div>
+            <div class="archive-item"><img src="images/arsip13.jpg"><p style="padding:10px">Kegiatan 13</p></div>
         </div>
+        <button class="btn-toggle" id="btnSee" onclick="toggleArsip()">See More</button>
+    </main>
 
-        <div class="btn-container">
-            <button class="btn-toggle" id="toggleBtn" onclick="togglePhotos()">See More</button>
-        </div>
-    </section>
-
-    <section id="sosmed" class="section" style="text-align: center;">
-        <h2 class="section-title">Keep in <span>Touch</span></h2>
-        <div class="social-links">
-            <a href="https://instagram.com/user">INSTAGRAM</a>
-            <a href="https://tiktok.com/@user">TIKTOK</a>
-        </div>
-    </section>
-
+    <footer>&copy; 2026 XTJKT1 SMKN 1 PRACIMANTORO</footer>
 
     <script>
-        function togglePhotos() {
-            const hiddenPhotos = document.querySelectorAll('.archive-item:not(:nth-child(-n+3))');
-            const btn = document.getElementById('toggleBtn');
+        function showPage(pageId) {
+            // Sembunyikan semua page
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Hapus class active di nav
+            document.querySelectorAll('nav ul li a').forEach(nav => {
+                nav.classList.remove('active');
+            });
+            // Tampilkan page yang diklik
+            document.getElementById(pageId).classList.add('active');
+            // Aktifkan menu nav yang sesuai
+            document.getElementById('nav-' + pageId).classList.add('active');
+            // Scroll ke atas
+            window.scrollTo(0, 0);
+        }
+
+        function toggleArsip() {
+            const items = document.querySelectorAll('.archive-item:not(:nth-child(-n+3))');
+            const btn = document.getElementById('btnSee');
             
             if (btn.innerText === 'See More') {
-                hiddenPhotos.forEach(p => p.classList.add('show'));
+                items.forEach(item => item.classList.add('visible'));
                 btn.innerText = 'Hide';
             } else {
-                hiddenPhotos.forEach(p => p.classList.remove('show'));
+                items.forEach(item => item.classList.remove('visible'));
                 btn.innerText = 'See More';
-                window.location.href = '#arsip';
+                showPage('arsip');
             }
         }
     </script>
