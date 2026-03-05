@@ -9,16 +9,15 @@
             --bg: #ffffff;
             --text-main: #1e293b;
             --text-muted: #64748b;
-            --accent: #8b5cf6; /* Warna Ungu Modern */
+            --accent: #8b5cf6; 
             --accent-light: #f5f3ff;
-            --card-bg: #ffffff;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
         }
 
@@ -27,24 +26,54 @@
             color: var(--text-main);
             line-height: 1.7;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* ANIMATED BACKGROUND */
-        .bg-animation {
+        /* --- ANIMASI BACKGROUND SEDERHANA --- */
+        .area {
+            background: #ffffff;  
+            width: 100%;
+            height: 100vh;
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
             z-index: -1;
-            background: radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
-            animation: moveBg 15s infinite alternate;
         }
 
-        @keyframes moveBg {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+        .circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
-        /* NAVIGATION */
+        .circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(139, 92, 246, 0.1);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+
+        .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        .circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+        .circles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+        .circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+
+        @keyframes animate {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 50%; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 20%; }
+        }
+
+        /* --- NAVIGATION --- */
         header {
             padding: 20px 10%;
             display: flex;
@@ -58,53 +87,18 @@
             border-bottom: 1px solid var(--accent-light);
         }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--accent);
-        }
-
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--accent); }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 30px; }
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: 0.3s;
-        }
+        nav ul li a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
         nav ul li a:hover { color: var(--accent); }
 
-        /* HERO SECTION */
-        .hero {
-            padding: 60px 10% 0;
-            text-align: center;
-        }
-
-        .hero span {
-            background: var(--accent-light);
-            color: var(--accent);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 800;
-            margin: 20px 0;
-            letter-spacing: -1px;
-        }
-
-        .hero-img-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 1000px;
-            margin: 40px auto 0;
-        }
-
+        /* --- HERO --- */
+        .hero { padding: 60px 10% 0; text-align: center; }
+        .hero span { background: var(--accent-light); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.75rem; letter-spacing: 1px; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin: 20px 0; }
+        
+        .hero-img-wrapper { position: relative; width: 100%; max-width: 1000px; margin: 40px auto 0; }
         .hero-img {
             width: 100%;
             height: auto;
@@ -113,114 +107,75 @@
             mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
         }
 
-        /* SECTION STYLING */
+        /* --- CONTENT SECTION --- */
         .section { padding: 80px 10%; }
         .section-title { font-size: 2rem; margin-bottom: 40px; }
         .section-title span { color: var(--accent); }
-
-        /* VISI MISI */
+        
         .grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .card {
-            background: var(--accent-light);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(139, 92, 246, 0.1);
-        }
+        .card { background: rgba(245, 243, 255, 0.7); padding: 30px; border-radius: 20px; border: 1px solid rgba(139, 92, 246, 0.1); backdrop-filter: blur(5px); }
 
-        /* ARSIP GALLERY */
-        .archive-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .archive-item {
-            border-radius: 15px;
-            overflow: hidden;
-            background: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            display: none; /* Hidden by default for See More */
-        }
-
+        /* --- ARSIP GALLERY --- */
+        .archive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .archive-item { border-radius: 15px; overflow: hidden; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: none; }
         .archive-item.show { display: block; }
-
-        .archive-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
+        .archive-item img { width: 100%; height: 200px; object-fit: cover; }
         .p-4 { padding: 15px; }
 
-        /* BUTTONS */
         .btn-container { text-align: center; margin-top: 40px; }
-        .btn-toggle {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .btn-toggle:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-toggle { background: var(--accent); color: white; border: none; padding: 12px 40px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .btn-toggle:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4); }
 
-        /* SOCIAL */
-        .social-links a {
-            display: inline-block;
-            margin: 10px;
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 700;
-            border-bottom: 2px solid var(--accent);
-        }
+        /* --- SOSMED --- */
+        .social-links a { display: inline-block; margin: 10px; color: var(--text-main); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--accent); padding-bottom: 5px; }
 
-        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.8rem; }
+        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid #eee; margin-top: 50px; }
 
-        @media (max-width: 768px) {
-            .grid-info { grid-template-columns: 1fr; }
-            nav { display: none; }
-        }
+        @media (max-width: 768px) { .grid-info { grid-template-columns: 1fr; } nav { display: none; } }
     </style>
 </head>
 <body>
 
-    <div class="bg-animation"></div>
+    <div class="area">
+        <ul class="circles">
+            <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        </ul>
+    </div>
 
     <header>
-        <div class="logo">X TJK 1 SKANSAPRASTA</div>
+        <div class="logo">X TJKT 1 SKANSAPRASTA</div>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#profil">Profil</a></li>
                 <li><a href="#arsip">Arsip</a></li>
-                <li><a href="#sosmed">Sosial</a></li>
+                <li><a href="#sosmed">Social</a></li>
             </ul>
         </nav>
     </header>
 
     <section id="home" class="hero">
-        <span>GENERASI TEKNOLOGI</span>
-        <h1>Innovating The Future <br>From X TJKT 1</h1>
+        <span>X TJKT 1 OFFICIAL WEBSITE</span>
+        <h1>Innovating The Future <br>Together.</h1>
         <div class="hero-img-wrapper">
-            <img src="images/foto-utama.jpg" alt="Foto Utama" class="hero-img">
+            <img src="images/foto-utama.jpg" alt="Foto Kelas" class="hero-img">
         </div>
     </section>
 
     <section id="profil" class="section">
-        <h2 class="section-title">Visi & <span>Misi</span></h2>
+        <h2 class="section-title">Visi & <span>Misi Kelas</span></h2>
         <div class="grid-info">
             <div class="card">
                 <h3>Visi Kami</h3>
-                <p>Menjadi pionir dalam penguasaan infrastruktur jaringan yang berlandaskan etika digital dan kekeluargaan yang kokoh di lingkungan SMK Negeri 1 Pracimantoro.</p>
+                <p>Menjadi kelas yang paling solid, berprestasi di bidang teknologi informasi, dan menjunjung tinggi nama baik SMKN 1 Pracimantoro.</p>
             </div>
             <div class="card">
                 <h3>Misi Utama</h3>
-                <p>• Unggul dalam praktikum sistem komunikasi.</p>
-                <p>• Menjaga solidaritas tanpa membeda-bedakan.</p>
-                <p>• Berinovasi dalam solusi teknologi tepat guna.</p>
-                <p>• Disiplin dalam waktu dan tanggung jawab.</p>
+                <p>• Menguasai teknik jaringan dengan serius.<br>
+                   • Saling membantu dalam kesulitan belajar.<br>
+                   • Menjaga solidaritas antar teman seangkatan.<br>
+                   • Aktif berkontribusi dalam kegiatan sekolah.<br>
+                   • Mengembangkan bakat di bidang IT dan digital.</p>
             </div>
         </div>
     </section>
@@ -249,10 +204,10 @@
     </section>
 
     <section id="sosmed" class="section" style="text-align: center;">
-        <h2 class="section-title">Follow <span>Our Journey</span></h2>
+        <h2 class="section-title">Keep in <span>Touch</span></h2>
         <div class="social-links">
-            <a href="#">INSTAGRAM</a>
-            <a href="#">TIKTOK</a>
+            <a href="https://instagram.com/user">INSTAGRAM</a>
+            <a href="https://tiktok.com/@user">TIKTOK</a>
         </div>
     </section>
 
@@ -266,10 +221,10 @@
             const btn = document.getElementById('toggleBtn');
             
             if (btn.innerText === 'See More') {
-                hiddenPhotos.forEach(photo => photo.classList.add('show'));
+                hiddenPhotos.forEach(p => p.classList.add('show'));
                 btn.innerText = 'Hide';
             } else {
-                hiddenPhotos.forEach(photo => photo.classList.remove('show'));
+                hiddenPhotos.forEach(p => p.classList.remove('show'));
                 btn.innerText = 'See More';
                 window.location.href = '#arsip';
             }
