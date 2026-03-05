@@ -17,6 +17,7 @@
         * {
             margin: 0; padding: 0; box-sizing: border-box;
             font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -85,9 +86,10 @@
         }
 
         /* TABLE STYLES (Siswa & Jadwal) */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--white); border-radius: 15px; overflow: hidden; }
-        th { background: var(--accent); color: white; padding: 15px; text-align: left; }
-        td { padding: 15px; border-bottom: 1px solid var(--accent-light); }
+        .table-container { overflow-x: auto; margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 15px; overflow: hidden; }
+        th { background: var(--accent); color: white; padding: 15px; text-align: left; font-size: 0.9rem; }
+        td { padding: 15px; border-bottom: 1px solid var(--accent-light); font-size: 0.9rem; }
         tr:hover { background: var(--accent-light); }
 
         /* ARSIP STYLES */
@@ -128,7 +130,7 @@
 
     <main id="home" class="page active">
         <h1 class="section-title">Generasi <span>Hebat</span> XTJKT1</h1>
-        <p style="text-align: center;">Selamat datang di website resmi kelas XTJKT1 SMK Negeri 1 Pracimantoro.</p>
+        <p style="text-align: center;">Teknik Jaringan Komputer & Telekomunikasi - SMKN 1 Pracimantoro.</p>
         <img src="images/foto-utama.jpg" alt="Foto Kelas" class="hero-img">
     </main>
 
@@ -136,69 +138,92 @@
         <h2 class="section-title">Tentang <span>TJKT</span></h2>
         <div class="card">
             <h3>Apa itu TJKT?</h3>
-            <p>Teknik Jaringan Komputer dan Telekomunikasi adalah jurusan yang fokus pada infrastruktur IT, mulai dari perakitan komputer hingga manajemen server dan keamanan jaringan.</p>
+            <p>Teknik Jaringan Komputer dan Telekomunikasi (TJKT) mempelajari infrastruktur digital, mulai dari perakitan perangkat keras, manajemen server, hingga sistem keamanan siber.</p>
         </div>
         <div class="card">
-            <h3>Visi & Misi</h3>
-            <p>Menjadi kelas yang paling solid, menguasai teknologi masa depan, dan selalu disiplin dalam praktik maupun teori.</p>
+            <h3>Visi & Misi Kelas</h3>
+            <p><strong>Visi:</strong> Mewujudkan XTJKT1 sebagai kelas yang kompeten, kreatif, dan solid.</p>
+            <p><strong>Misi:</strong> Saling membantu dalam belajar, menjaga kedisiplinan, dan aktif dalam inovasi teknologi.</p>
         </div>
     </main>
 
     <main id="siswa" class="page">
         <h2 class="section-title">Data <span>Siswa</span></h2>
         <div class="card">
-            <table>
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Lengkap</th>
-                        <th>Jabatan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>1</td><td>Nama Contoh 1</td><td>Ketua Kelas</td></tr>
-                    <tr><td>2</td><td>Nama Contoh 2</td><td>Sekretaris</td></tr>
-                    <tr><td>3</td><td>...</td><td>...</td></tr>
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Lengkap</th>
+                            <th>Jabatan/Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelSiswa">
+                        <tr><td>1</td><td>Nama Siswa 1</td><td>Ketua Kelas</td></tr>
+                        <tr><td>2</td><td>Nama Siswa 2</td><td>Sekretaris</td></tr>
+                        <tr><td>3</td><td>Nama Siswa 3</td><td>Siswa</td></tr>
+                        <tr><td>...</td><td>...</td><td>...</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 
     <main id="jadwal" class="page">
         <h2 class="section-title">Jadwal <span>Pelajaran</span></h2>
         <div class="card">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Hari</th>
-                        <th>Mata Pelajaran</th>
-                        <th>Jam</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Senin</td><td>Dasar TJKT</td><td>07:00 - 12:00</td></tr>
-                    <tr><td>Selasa</td><td>Informatika</td><td>08:00 - 10:00</td></tr>
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Mapel 1</th>
+                            <th>Mapel 2</th>
+                            <th>Mapel 3</th>
+                            <th>Mapel 4</th>
+                            <th>Mapel 5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Senin</td>
+                            <td>Dasar TJKT</td>
+                            <td>Informatika</td>
+                            <td>B. Indonesia</td>
+                            <td>Matematika</td>
+                            <td>Olahraga</td>
+                        </tr>
+                        <tr>
+                            <td>Selasa</td>
+                            <td>Mapel A</td>
+                            <td>Mapel B</td>
+                            <td>Mapel C</td>
+                            <td>Mapel D</td>
+                            <td>Mapel E</td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
         </div>
     </main>
 
     <main id="arsip" class="page">
         <h2 class="section-title">Arsip <span>Dokumentasi</span></h2>
         <div class="archive-grid" id="gallery">
-            <div class="archive-item visible"><img src="images/arsip1.jpg"><p style="padding:10px">Kegiatan 1</p></div>
-            <div class="archive-item visible"><img src="images/arsip2.jpg"><p style="padding:10px">Kegiatan 2</p></div>
-            <div class="archive-item visible"><img src="images/arsip3.jpg"><p style="padding:10px">Kegiatan 3</p></div>
-            <div class="archive-item"><img src="images/arsip4.jpg"><p style="padding:10px">Kegiatan 4</p></div>
-            <div class="archive-item"><img src="images/arsip5.jpg"><p style="padding:10px">Kegiatan 5</p></div>
-            <div class="archive-item"><img src="images/arsip6.jpg"><p style="padding:10px">Kegiatan 6</p></div>
-            <div class="archive-item"><img src="images/arsip7.jpg"><p style="padding:10px">Kegiatan 7</p></div>
-            <div class="archive-item"><img src="images/arsip8.jpg"><p style="padding:10px">Kegiatan 8</p></div>
-            <div class="archive-item"><img src="images/arsip9.jpg"><p style="padding:10px">Kegiatan 9</p></div>
-            <div class="archive-item"><img src="images/arsip10.jpg"><p style="padding:10px">Kegiatan 10</p></div>
-            <div class="archive-item"><img src="images/arsip11.jpg"><p style="padding:10px">Kegiatan 11</p></div>
-            <div class="archive-item"><img src="images/arsip12.jpg"><p style="padding:10px">Kegiatan 12</p></div>
-            <div class="archive-item"><img src="images/arsip13.jpg"><p style="padding:10px">Kegiatan 13</p></div>
+            <div class="archive-item visible"><img src="images/arsip1.jpg"><p style="padding:10px">Dokumentasi 1</p></div>
+            <div class="archive-item visible"><img src="images/arsip2.jpg"><p style="padding:10px">Dokumentasi 2</p></div>
+            <div class="archive-item visible"><img src="images/arsip3.jpg"><p style="padding:10px">Dokumentasi 3</p></div>
+            <div class="archive-item"><img src="images/arsip4.jpg"><p style="padding:10px">Dokumentasi 4</p></div>
+            <div class="archive-item"><img src="images/arsip5.jpg"><p style="padding:10px">Dokumentasi 5</p></div>
+            <div class="archive-item"><img src="images/arsip6.jpg"><p style="padding:10px">Dokumentasi 6</p></div>
+            <div class="archive-item"><img src="images/arsip7.jpg"><p style="padding:10px">Dokumentasi 7</p></div>
+            <div class="archive-item"><img src="images/arsip8.jpg"><p style="padding:10px">Dokumentasi 8</p></div>
+            <div class="archive-item"><img src="images/arsip9.jpg"><p style="padding:10px">Dokumentasi 9</p></div>
+            <div class="archive-item"><img src="images/arsip10.jpg"><p style="padding:10px">Dokumentasi 10</p></div>
+            <div class="archive-item"><img src="images/arsip11.jpg"><p style="padding:10px">Dokumentasi 11</p></div>
+            <div class="archive-item"><img src="images/arsip12.jpg"><p style="padding:10px">Dokumentasi 12</p></div>
+            <div class="archive-item"><img src="images/arsip13.jpg"><p style="padding:10px">Dokumentasi 13</p></div>
         </div>
         <button class="btn-toggle" id="btnSee" onclick="toggleArsip()">See More</button>
     </main>
@@ -207,26 +232,17 @@
 
     <script>
         function showPage(pageId) {
-            // Sembunyikan semua page
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            // Hapus class active di nav
-            document.querySelectorAll('nav ul li a').forEach(nav => {
-                nav.classList.remove('active');
-            });
-            // Tampilkan page yang diklik
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('nav ul li a').forEach(nav => nav.classList.remove('active'));
+            
             document.getElementById(pageId).classList.add('active');
-            // Aktifkan menu nav yang sesuai
             document.getElementById('nav-' + pageId).classList.add('active');
-            // Scroll ke atas
             window.scrollTo(0, 0);
         }
 
         function toggleArsip() {
             const items = document.querySelectorAll('.archive-item:not(:nth-child(-n+3))');
             const btn = document.getElementById('btnSee');
-            
             if (btn.innerText === 'See More') {
                 items.forEach(item => item.classList.add('visible'));
                 btn.innerText = 'Hide';
