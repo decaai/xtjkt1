@@ -1,1 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XTJKT1 - SMKN 1 Pracimantoro</title>
+    <style>
+        /* CSS INTERNAL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
 
+        body {
+            background-color: #f0f2f5;
+            color: #1c1e21;
+            line-height: 1.6;
+        }
+
+        /* Navigasi */
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        /* Hero / Homepage */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: white;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .main-photo {
+            width: 90%;
+            max-width: 900px;
+            height: 450px;
+            object-fit: cover;
+            margin-top: 25px;
+            border-radius: 20px;
+            border: 8px solid #ecf0f1;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Arsip Foto */
+        .arsip {
+            padding: 100px 5% 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .arsip h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .arsip h2::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: #3498db;
+            display: block;
+            margin: 10px auto;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-info {
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .main-photo { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">XTJKT1 PRACI</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#arsip">Arsip</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Welcome to XTJKT1</h1>
+        <p>SMK Negeri 1 Pracimantoro - Membangun Masa Depan Digital</p>
+        
+        <img src="images/foto_bersama.jpg" alt="Foto Kelas Utama" class="main-photo">
+    </section>
+
+    <section id="arsip" class="arsip">
+        <h2>Arsip Dokumentasi</h2>
+        
+        <div class="photo-grid">
+            <div class="card">
+                <img src="images/kegiatan1.jpg" alt="Kegiatan">
+                <div class="card-info">Praktik Jaringan</div>
+            </div>
+
+            <div class="card">
+                <img src="images/kegiatan2.jpg" alt="Kegiatan">
+                <div class="card-info">Momen di Kelas</div>
+            </div>
+
+            <div class="card">
+                <img src="images/kegiatan3.jpg" alt="Kegiatan">
+                <div class="card-info">Tugas Kelompok</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Keluarga Besar XTJKT1 - SMKN 1 Pracimantoro</p>
+    </footer>
+
+</body>
+</html>
