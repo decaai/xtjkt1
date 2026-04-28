@@ -4,301 +4,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X TJKT 1 | SMKN 1 PRACIMANTORO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --accent: #8b5cf6; 
-            --accent-light: #f5f3ff;
-            --white: #ffffff;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.5);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
         * {
             margin: 0; padding: 0; box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            line-height: 1.7;
+            min-height: 100vh;
             overflow-x: hidden;
+            background: radial-gradient(circle at top right, #1e1b4b, var(--bg));
         }
 
-        /* --- ANIMASI BACKGROUND --- */
-        .area {
-            background: #ffffff; width: 100%; height: 100vh;
-            position: fixed; top: 0; left: 0; z-index: -1;
-        }
-        .circles {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden;
-        }
-        .circles li {
-            position: absolute; display: block; list-style: none;
-            width: 20px; height: 20px; background: rgba(139, 92, 246, 0.1);
-            animation: animate 25s linear infinite; bottom: -150px; border-radius: 50%;
-        }
-        .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
-        .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
-        .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
-        @keyframes animate {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 50%; }
-            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 20%; }
-        }
-
-        /* --- NAVIGATION (Sticky & Blur) --- */
+        /* --- MODERN HEADER --- */
         header {
-            padding: 20px 10%; display: flex; justify-content: space-between;
-            align-items: center; background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(15px); border-bottom: 1px solid var(--accent-light);
-            position: fixed; width: 100%; top: 0; z-index: 1000;
-        }
-        .logo { font-weight: 800; font-size: 1.2rem; color: var(--accent); text-decoration: none; }
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 20px; }
-        nav ul li a {
-            text-decoration: none; color: var(--text-muted);
-            font-size: 0.85rem; font-weight: 600; transition: 0.3s;
-        }
-        nav ul li a:hover { color: var(--accent); }
-
-        /* --- SECTION & CARD STYLES --- */
-        section { padding: 100px 10% 60px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
-        .section-title { font-size: 3rem; margin-bottom: 30px; text-align: center; font-weight: 800; letter-spacing: -1px; }
-        .section-title span { color: var(--accent); }
-        
-        .card {
-            background: rgba(255, 255, 255, 0.6); padding: 40px;
-            border-radius: 30px; border: 1px solid rgba(139, 92, 246, 0.15);
-            backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            transition: 0.4s;
-        }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
-
-        /* --- HERO --- */
-        .hero-img {
-            width: 100%; max-width: 950px; border-radius: 40px;
-            display: block; margin: 40px auto;
-            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            text-align: center;
+            padding: 4rem 1rem;
+            animation: fadeIn 1s ease-out;
         }
 
-        /* --- TABLES (Data & Jadwal) --- */
-        .table-container { overflow-x: auto; margin-top: 20px; border-radius: 20px; }
-        table { width: 100%; border-collapse: collapse; background: var(--white); }
-        th { background: var(--accent); color: white; padding: 18px; text-align: left; font-size: 0.9rem; text-transform: uppercase; }
-        td { padding: 16px; border-bottom: 1px solid var(--accent-light); transition: 0.2s; }
-        tr:hover td { background: var(--accent-light); color: var(--accent); font-weight: 600; }
-
-        /* --- ARSIP GALLERY --- */
-        .archive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .archive-item { 
-            border-radius: 25px; overflow: hidden; background: #fff; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); position: relative;
-            display: none; /* See More Logic */
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
         }
-        .archive-item.visible { display: block; animation: scaleUp 0.4s ease; }
-        @keyframes scaleUp { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        
-        .archive-item img { width: 100%; height: 250px; object-fit: cover; transition: 0.5s; }
-        .archive-item:hover img { transform: scale(1.1); }
 
-        .btn-toggle { 
-            background: var(--accent); color: white; border: none; padding: 15px 45px; 
-            border-radius: 50px; cursor: pointer; font-weight: 700; margin: 40px auto; display: block;
-            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3); transition: 0.3s;
+        /* --- STUDENT GRID --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        .btn-toggle:hover { transform: scale(1.05); background: #7c3aed; }
 
-        footer { text-align: center; padding: 60px; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid #eee; }
+        .student-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
 
-        @media (max-width: 768px) {
-            header { padding: 15px 5%; }
-            nav ul li { margin-left: 10px; }
-            .section-title { font-size: 2rem; }
+        .student-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .student-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* --- MINI GAME: CATCH THE STUDENT --- */
+        .game-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #game-canvas {
+            width: 100%;
+            height: 300px;
+            background: #020617;
+            border-radius: 12px;
+            margin: 20px 0;
+            position: relative;
+            cursor: crosshair;
+        }
+
+        .target {
+            position: absolute;
+            padding: 8px 15px;
+            background: var(--accent);
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            user-select: none;
+            transition: 0.1s;
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        .btn-play {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-play:hover { opacity: 0.8; transform: scale(1.05); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="area"><ul class="circles"><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>
+<header>
+    <h1>X TJKT 1</h1>
+    <p style="color: var(--text-muted)">SMKN 1 PRACIMANTORO • Future Network Engineer</p>
+</header>
 
-    <header>
-        <a href="#home" class="logo">X TJKT 1</a>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#profil">Profil</a></li>
-                <li><a href="#siswa">Siswa</a></li>
-                <li><a href="#jadwal">Piket</a></li>
-                <li><a href="#arsip">Arsip</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="home">
-        <h1 class="section-title">Generasi <span>Digital</span> XTJKT1</h1>
-        <p style="text-align: center; color: var(--text-muted);">Innovating Through Network and Connection.</p>
-        <img src="images/foto-utama.jpg" alt="Foto Kelas Utama" class="hero-img">
-    </section>
-
-    <section id="profil">
-        <h2 class="section-title">Edukasi <span>& Visi</span></h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-            <div class="card">
-              <h3>Apa itu TJKT?</h3>
-                <p><strong>Teknik Jaringan Komputer dan Telekomunikasi (TJKT)</strong> adalah kompetensi keahlian yang mempelajari cara merakit komputer, instalasi sistem operasi, hingga membangun infrastruktur jaringan kabel maupun nirkabel.</p>
-                <h4>Dasar-Dasar Keahlian:</h4>
-                <ul>
-                    <li><strong>Hardware:</strong> Pengenalan komponen fisik PC dan perangkat jaringan (Router, Switch, Access Point).</li>
-                    <li><strong>Networking:</strong> Pemahaman IP Address, Subnetting, dan Protokol Jaringan.</li>
-                    <li><strong>Telekomunikasi:</strong> Teknik transmisi data melalui kabel (Fiber Optic) maupun nirkabel.</li>
-                    <li><strong>Cyber Security:</strong> Dasar keamanan jaringan untuk melindungi data digital.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>Visi Kelas</h3>
-                <p>Mencetak talenta digital yang disiplin, beretika, dan unggul dalam kompetensi jaringan komputer global.</p>
-            </div>
+<div class="container">
+    <div class="student-grid">
+        <div class="student-card">
+            <div style="font-size: 2rem; margin-bottom: 10px;">👨‍💻</div>
+            <h3>Andi Prasetyo</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted)">Network Specialist</p>
         </div>
-    </section>
-
-    <section id="siswa">
-        <h2 class="section-title">Data <span>Siswa</span></h2>
-        <div class="card">
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Lengkap</th>
-                    
-                        </tr>
-                    </thead>
-               <tbody>
-    <tr><td>01</td><td>ADHI FIQGHA AMANANTHA</td></tr>
-    <tr><td>02</td><td>ADINDA PRASTICA PUTRI ROSIANI</td></tr>
-    <tr><td>03</td><td>AILUNG ANDREAS PURTIONO</td></tr>
-    <tr><td>04</td><td>AINI HASANAH</td></tr>
-    <tr><td>05</td><td>ALIF AHMAD FAUZI</td></tr>
-    <tr><td>06</td><td>ARDIAN WISNU PRADANA</td></tr>
-    <tr><td>07</td><td>AZIZAH MULIAWATI</td></tr>
-    <tr><td>08</td><td>DISTA JANUAR AFANDI</td></tr>
-    <tr><td>09</td><td>FAULA LANGIT BERLIYAN</td></tr>
-    <tr><td>10</td><td>FEBRI IFNU MAULANA</td></tr>
-    <tr><td>11</td><td>FIONA PUTRI NATASYA</td></tr>
-    <tr><td>12</td><td>HAIFA HANNUM ARIZYA</td></tr>
-    <tr><td>13</td><td>HAMKA BIMA JALU RAMADHAN</td></tr>
-    <tr><td>14</td><td>HASYIM AHMAD SAPUTRA</td></tr>
-    <tr><td>15</td><td>ILHAM HALIM</td></tr>
-    <tr><td>16</td><td>INDAH PANJALI KUSUMA</td></tr>
-    <tr><td>17</td><td>KHAIRATUL INSAN</td></tr>
-    <tr><td>18</td><td>LENITA WAHYUNINGTYAS</td></tr>
-    <tr><td>19</td><td>MAULANA ARDAN MAJID</td></tr>
-    <tr><td>20</td><td>MUHAMMAD JUNDAN AL RIFQY</td></tr>
-    <tr><td>21</td><td>MUHAMMAD DINO NUR ASMORO</td></tr>
-    <tr><td>22</td><td>NASFA LUTFIA ZAHRA</td></tr>
-    <tr><td>23</td><td>PRAHASTHA ADIKARA AVIANTO</td></tr>
-    <tr><td>24</td><td>RAFA PUTRA RAHMADHAN</td></tr>
-    <tr><td>25</td><td>RASYA PUTRA PRATAMA</td></tr>
-    <tr><td>26</td><td>RATISTA INDIANY</td></tr>
-    <tr><td>27</td><td>REHAN VEBRI ANTO</td></tr>
-    <tr><td>28</td><td>RIZKY ADITYA WAHDIANTO</td></tr>
-    <tr><td>29</td><td>ROOFI FIRMANTA AL HUDA</td></tr>
-    <tr><td>30</td><td>SATRIA RAMADHANU</td></tr>
-    <tr><td>31</td><td>SEPTIAN RAFA NURAFIK</td></tr>
-    <tr><td>32</td><td>TRI HARTANTO</td></tr>
-    <tr><td>33</td><td>TSANCHEN BATHINI</td></tr>
-    <tr><td>34</td><td>WAHYU SATRIA TAMA</td></tr>
-    <tr><td>35</td><td>YOGA ENNO KHORUDIN</td></tr>
-</tbody>
-                </table>
-            </div>
+        <div class="student-card">
+            <div style="font-size: 2rem; margin-bottom: 10px;">👩‍💻</div>
+            <h3>Siti Sarah</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted)">System Admin</p>
         </div>
-    </section>
-
-   <section id="jadwal">
-    <h2 class="section-title">Piket <span>Kelas X TJKT 1</span></h2>
-    <div class="card">
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Hari</th>
-                        <th>Sebelum KBM (Pagi)</th>
-                        <th>Setelah KBM (Sore)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Senin</strong></td>
-                        <td>Alif Ahmad Fauzi, Nasfa Lutfia Zahra, Tri Hartanto</td>
-                        <td>Adhi Fiqgha Amanantha, Febri Ifnu Maulana, Prahastha Adikara A, Rasya Putra Pratama</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Selasa</strong></td>
-                        <td>Hasyim Ahmad Saputra, Khairatul Insan, Muhhamad Dino Nur A, Rehan Vebri Anto</td>
-                        <td>Adinda Prastica Putri R, Faula Langit Berliyan, Roofi Firmanta Al Huda, Wahyu Satria Tama</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Rabu</strong></td>
-                        <td>Azizah Muliawati, Hamka Bima Jalu R, Lenita Wahyuningtyas, Satria Ramadhanu</td>
-                        <td>Dista Januar Afandi, Indah Panjali Kusuma, Muhammad Jundan Al R, Ratista Indiany</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Kamis</strong></td>
-                        <td>Aini Hasanah, Maulana Ardan Majid, Rizky Aditya Wahdianto, Septian Rafa Nurafik</td>
-                        <td>Ardian Wisnu Pradana, Fiona Putri Natasya, Haifa Hannum Arizya, Rafa Putra Rahmadhan</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Jum'at</strong></td>
-                        <td>Ailung Andreas Purtiono, Ilham Halim, Tsanchen Bathini, Yoga Enno Khorudin</td>
-                        <td>-</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="student-card">
+            <div style="font-size: 2rem; margin-bottom: 10px;">👨‍💻</div>
+            <h3>Budi Utomo</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted)">Security Analyst</p>
         </div>
     </div>
-</section>
 
-    <section id="arsip">
-        <h2 class="section-title">Arsip <span>Memori</span></h2>
-        <div class="archive-grid" id="gallery">
-            <div class="archive-item visible"><img src="images/arsip1.jpg"><div style="padding:15px"><b>Foto 1</b></div></div>
-            <div class="archive-item visible"><img src="images/arsip2.jpg"><div style="padding:15px"><b>Foto 2</b></div></div>
-            <div class="archive-item visible"><img src="images/arsip3.jpg"><div style="padding:15px"><b>Foto 3</b></div></div>
-            <div class="archive-item"><img src="images/arsip4.jpg"><div style="padding:15px"><b>Foto 4</b></div></div>
-            <div class="archive-item"><img src="images/arsip5.jpg"><div style="padding:15px"><b>Foto 5</b></div></div>
-            <div class="archive-item"><img src="images/arsip6.jpg"><div style="padding:15px"><b>Foto 6</b></div></div>
-            <div class="archive-item"><img src="images/arsip7.jpg"><div style="padding:15px"><b>Foto 7</b></div></div>
-            <div class="archive-item"><img src="images/arsip8.jpg"><div style="padding:15px"><b>Foto 8</b></div></div>
-            <div class="archive-item"><img src="images/arsip9.jpg"><div style="padding:15px"><b>Foto 9</b></div></div>
-            <div class="archive-item"><img src="images/arsip10.jpg"><div style="padding:15px"><b>Foto 10</b></div></div>
-            <div class="archive-item"><img src="images/arsip11.jpg"><div style="padding:15px"><b>Foto 11</b></div></div>
-            <div class="archive-item"><img src="images/arsip12.jpg"><div style="padding:15px"><b>Foto 12</b></div></div>
-            <div class="archive-item"><img src="images/arsip13.jpg"><div style="padding:15px"><b>Foto 13</b></div></div>
-        </div>
-        <button class="btn-toggle" id="btnSee" onclick="toggleArsip()">See More Memories</button>
-    </section>
+    <div class="game-section">
+        <h2>🎮 Mini Game: Tangkap Siswa!</h2>
+        <p>Klik nama siswa yang muncul untuk dapat poin!</p>
+        <div style="margin-top: 10px; font-weight: bold;">Skor: <span id="score">0</span></div>
+        <div id="game-canvas">
+            </div>
+        <button class="btn-play" onclick="startGame()">Mulai Main</button>
+    </div>
+</div>
 
- 
+<script>
+    const studentNames = ["Andi", "Siti", "Budi", "Rudi", "Lina", "Dewi"];
+    let score = 0;
+    let gameActive = false;
 
-    <script>
-        function toggleArsip() {
-            const items = document.querySelectorAll('.archive-item:not(:nth-child(-n+3))');
-            const btn = document.getElementById('btnSee');
-            
-            if (btn.innerText === 'See More Memories') {
-                items.forEach(item => item.classList.add('visible'));
-                btn.innerText = 'Hide Memories';
-            } else {
-                items.forEach(item => item.classList.remove('visible'));
-                btn.innerText = 'See More Memories';
-                document.getElementById('arsip').scrollIntoView();
-            }
-        }
-    </script>
+    function startGame() {
+        if(gameActive) return;
+        gameActive = true;
+        score = 0;
+        document.getElementById('score').innerText = score;
+        spawnTarget();
+        
+        setTimeout(() => {
+            gameActive = false;
+            alert("Game Selesai! Skor Akhir Kamu: " + score);
+            document.getElementById('game-canvas').innerHTML = "";
+        }, 15000); // Main selama 15 detik
+    }
+
+    function spawnTarget() {
+        if(!gameActive) return;
+
+        const canvas = document.getElementById('game-canvas');
+        canvas.innerHTML = "";
+
+        const target = document.createElement('div');
+        target.className = 'target';
+        target.innerText = studentNames[Math.floor(Math.random() * studentNames.length)];
+        
+        // Posisi Acak
+        const maxX = canvas.clientWidth - 100;
+        const maxY = canvas.clientHeight - 40;
+        target.style.left = Math.floor(Math.random() * maxX) + 'px';
+        target.style.top = Math.floor(Math.random() * maxY) + 'px';
+
+        target.onclick = () => {
+            score++;
+            document.getElementById('score').innerText = score;
+            spawnTarget();
+        };
+
+        canvas.appendChild(target);
+
+        // Target hilang sendiri kalau tidak diklik dalam 1 detik
+        setTimeout(() => {
+            if(target.parentElement) spawnTarget();
+        }, 1000);
+    }
+</script>
+
 </body>
 </html>
